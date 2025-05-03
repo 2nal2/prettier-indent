@@ -58,8 +58,8 @@ local function parse_prettier_config(path)
   end
 end
 
--- Apply shiftwidth/tabstop/expandtab based on Prettier config
-function M.apply()
+function M.setup()
+  -- Apply shiftwidth/tabstop/expandtab based on Prettier config
   local filepath = vim.api.nvim_buf_get_name(0)
   if filepath == "" then return end
   local config_path = find_prettier_config(vim.fn.fnamemodify(filepath, ":p:h"))
@@ -72,15 +72,6 @@ function M.apply()
   vim.bo.shiftwidth = config.tabWidth or 2
   vim.bo.tabstop = config.tabWidth or 2
   vim.bo.expandtab = not config.useTabs
-end
-
-function M.setup()
-  M.apply()
-  -- vim.api.nvim_create_autocmd("BufReadPost", {
-  --   pattern = "*",
-  --   callback = M.apply,
-  --   group = vim.api.nvim_create_augroup("PrettierIndent", { clear = true }),
-  -- })
 end
 
 return M
