@@ -68,9 +68,15 @@ function M.setup()
   local config = parse_prettier_config(config_path)
   if not config then return end
 
-  vim.bo.shiftwidth = config.tabWidth or 2
-  vim.bo.tabstop = config.tabWidth or 2
-  vim.bo.expandtab = not config.useTabs
+  -- Set global indent settings
+  vim.o.shiftwidth = config.tabWidth or 2
+  vim.o.tabstop = config.tabWidth or 2
+  vim.o.expandtab = not config.useTabs
+
+  -- Set current buffer as well
+  vim.bo.shiftwidth = vim.o.shiftwidth
+  vim.bo.tabstop = vim.o.tabstop
+  vim.bo.expandtab = vim.o.expandtab
 end
 
 return M
