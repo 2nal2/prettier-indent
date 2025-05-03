@@ -12,8 +12,11 @@ A small Neovim plugin that automatically adjusts indentation (`shiftwidth`, `tab
 Using [lazy.nvim](https://github.com/folke/lazy.nvim):
 
 ```lua
-{
-    "2nal2/prettier-indent.nvim",
-    event = "VeryLazy",
+  {
+    "2nal2/prettier-indent",
+    event = "BufReadPost",
     lazy = true,
-}
+    config = function()
+      require("prettier-indent").setup()
+    end,
+  }
