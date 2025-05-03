@@ -63,6 +63,7 @@ function M.apply()
   local filepath = vim.api.nvim_buf_get_name(0)
   if filepath == "" then return end
   local config_path = find_prettier_config(vim.fn.fnamemodify(filepath, ":p:h"))
+  print(config_path)
   if not config_path then return end
 
   local config = parse_prettier_config(config_path)
