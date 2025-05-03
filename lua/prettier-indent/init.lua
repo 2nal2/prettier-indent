@@ -75,11 +75,12 @@ function M.apply()
 end
 
 function M.setup()
-  vim.api.nvim_create_autocmd("BufReadPost", {
-    pattern = "*",
-    callback = M.apply,
-    group = vim.api.nvim_create_augroup("PrettierIndent", { clear = true }),
-  })
+  M.apply()
+  -- vim.api.nvim_create_autocmd("BufReadPost", {
+  --   pattern = "*",
+  --   callback = M.apply,
+  --   group = vim.api.nvim_create_augroup("PrettierIndent", { clear = true }),
+  -- })
 end
 
 return M
